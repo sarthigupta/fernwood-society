@@ -1,62 +1,49 @@
-import { DemoResponse } from "@shared/api";
-import { useEffect, useState } from "react";
+import AnnouncementsSection from "@/components/sections/AnnouncementsSection";
+import AmenitiesSection from "@/components/sections/AmenitiesSection";
+import LostFoundSection from "@/components/sections/LostFoundSection";
 
 export default function Index() {
-  const [exampleFromServer, setExampleFromServer] = useState("");
-  // Fetch users on component mount
-  useEffect(() => {
-    fetchDemo();
-  }, []);
-
-  // Example of how to fetch data from the server (if needed)
-  const fetchDemo = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setExampleFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching hello:", error);
-    }
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-      <div className="text-center">
-        {/* TODO: FUSION_GENERATION_APP_PLACEHOLDER replace everything here with the actual app! */}
-        <h1 className="text-2xl font-semibold text-slate-800 flex items-center justify-center gap-3">
-          <svg
-            className="animate-spin h-8 w-8 text-slate-400"
-            viewBox="0 0 50 50"
-          >
-            <circle
-              className="opacity-30"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-            />
-            <circle
-              className="text-slate-600"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-              strokeDasharray="100"
-              strokeDashoffset="75"
-            />
-          </svg>
-          Generating your app...
-        </h1>
-        <p className="mt-4 text-slate-600 max-w-md">
-          Watch the chat on the left for updates that might need your attention
-          to finish generating
-        </p>
-        <p className="mt-4 hidden max-w-md">{exampleFromServer}</p>
+    <main id="top">
+      <Hero />
+      <div className="space-y-20">
+        <AnnouncementsSection />
+        <AmenitiesSection />
+        <LostFoundSection />
       </div>
-    </div>
+    </main>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-emerald-50 to-emerald-100/60 dark:from-emerald-900/20 dark:to-emerald-800/10">
+      <div className="container grid gap-8 py-16 md:grid-cols-2 md:items-center">
+        <div>
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">
+            Fernwood Society
+          </h1>
+          <p className="mt-4 text-base md:text-lg text-foreground/80 max-w-prose">
+            A modern residential community fostering sustainable living and strong neighborly bonds. Stay updated with announcements, explore amenities, and help with lost & found.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href="#announcements" className="rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-90">See announcements</a>
+            <a href="#amenities" className="rounded-md border border-border px-5 py-2.5 text-sm font-semibold hover:bg-secondary">Explore amenities</a>
+          </div>
+        </div>
+        <div className="relative">
+          <div className="absolute -inset-6 -z-10 bg-gradient-to-tr from-primary/10 to-transparent blur-2xl" />
+          <div className="rounded-2xl border border-border bg-card p-4 shadow-sm">
+            <div className="grid grid-cols-3 gap-3">
+              <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-emerald-300/40 to-emerald-600/40" />
+              <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-emerald-200/40 to-emerald-500/40" />
+              <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-emerald-300/40 to-emerald-600/40" />
+              <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-emerald-200/40 to-emerald-500/40" />
+              <div className="col-span-2 aspect-[8/3] rounded-lg bg-gradient-to-br from-emerald-300/40 to-emerald-600/40" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
