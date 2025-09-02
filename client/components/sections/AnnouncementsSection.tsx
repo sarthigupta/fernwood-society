@@ -137,7 +137,7 @@ export default function AnnouncementsSection() {
                   <div className="flex items-center gap-2">
                     {a.pinned && (
                       <span title="Pinned" className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
-                        <PushPin className="h-3 w-3" /> Pinned
+                        <Pin className="h-3 w-3" /> Pinned
                       </span>
                     )}
                     <h3 className="text-lg font-bold leading-snug">{a.title}</h3>
