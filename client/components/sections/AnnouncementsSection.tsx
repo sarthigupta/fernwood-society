@@ -1,5 +1,5 @@
 import { useAdmin } from "@/hooks/admin";
-import { Pencil, Plus, Trash2, PushPin } from "lucide-react";
+import { Pencil, Plus, Trash2, Pin } from "lucide-react";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
 export interface Announcement {
