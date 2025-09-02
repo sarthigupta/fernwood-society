@@ -34,4 +34,16 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+import { StrictMode } from "react";
+
+const container = document.getElementById("root")!;
+// Reuse a single React root across HMR updates to avoid duplicate trees
+// and context/provider mismatches.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const w = window as any;
+w.__app_root = w.__app_root || createRoot(container);
+w.__app_root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);
