@@ -23,7 +23,7 @@ function Hero() {
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">
             Fernwood Society
           </h1>
-          <p className="mt-4 text-base md:text-lg text-foreground/80 max-w-prose">
+          <p className="mt-4 text-base md:text-lg text-foreground/80 max-w-[967px]">
             A modern residential community fostering sustainable living and
             strong neighborly bonds. Stay updated with announcements, explore
             amenities, and help with lost & found.
@@ -45,15 +45,6 @@ function Hero() {
         </div>
         <div className="relative">
           <div className="absolute -inset-6 -z-10 bg-gradient-to-tr from-primary/10 to-transparent blur-2xl" />
-          <div className="rounded-2xl border border-border bg-card p-4 shadow-sm">
-            <div className="grid grid-cols-3 gap-3">
-              <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-emerald-300/40 to-emerald-600/40" />
-              <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-emerald-200/40 to-emerald-500/40" />
-              <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-emerald-300/40 to-emerald-600/40" />
-              <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-emerald-200/40 to-emerald-500/40" />
-              <div className="col-span-2 aspect-[8/3] rounded-lg bg-gradient-to-br from-emerald-300/40 to-emerald-600/40" />
-            </div>
-          </div>
         </div>
       </div>
     </section>
