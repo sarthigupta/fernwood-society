@@ -25,7 +25,9 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     [admin],
   );
 
-  return <AdminContext.Provider value={value}>{children}</AdminContext.Provider>;
+  return (
+    <AdminContext.Provider value={value}>{children}</AdminContext.Provider>
+  );
 }
 
 export function useAdmin() {

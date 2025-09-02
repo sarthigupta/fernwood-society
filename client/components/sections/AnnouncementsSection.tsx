@@ -79,7 +79,8 @@ export default function AnnouncementsSection() {
     resetForm();
   };
 
-  const onDelete = (id: string) => setItems((prev) => prev.filter((a) => a.id !== id));
+  const onDelete = (id: string) =>
+    setItems((prev) => prev.filter((a) => a.id !== id));
 
   const onEditSave = (id: string, next: Partial<Announcement>) => {
     setItems((prev) => prev.map((a) => (a.id === id ? { ...a, ...next } : a)));
@@ -91,38 +92,63 @@ export default function AnnouncementsSection() {
       <div className="container">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Announcements</h2>
-            <p className="text-sm text-muted-foreground mt-1">Stay informed with the latest updates from the management committee.</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+              Announcements
+            </h2>
+            <p className="text-sm text-muted-foreground mt-1">
+              Stay informed with the latest updates from the management
+              committee.
+            </p>
           </div>
           {admin && (
             <details className="w-full md:w-auto group">
               <summary className="list-none inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold hover:bg-card/60 cursor-pointer">
                 <Plus className="h-4 w-4" /> New
               </summary>
-              <form onSubmit={onSubmit} className="mt-3 grid gap-3 rounded-lg border border-border bg-card p-3 md:absolute md:right-0 md:mt-2 md:w-[28rem]">
+              <form
+                onSubmit={onSubmit}
+                className="mt-3 grid gap-3 rounded-lg border border-border bg-card p-3 md:absolute md:right-0 md:mt-2 md:w-[28rem]"
+              >
                 <input
                   className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                   placeholder="Title"
                   value={form.title}
-                  onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, title: e.target.value }))
+                  }
                 />
                 <textarea
                   className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm min-h-24"
                   placeholder="Write announcement details..."
                   value={form.body}
-                  onChange={(e) => setForm((f) => ({ ...f, body: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, body: e.target.value }))
+                  }
                 />
                 <label className="inline-flex items-center gap-2 text-sm">
                   <input
                     type="checkbox"
                     checked={form.pinned}
-                    onChange={(e) => setForm((f) => ({ ...f, pinned: e.target.checked }))}
+                    onChange={(e) =>
+                      setForm((f) => ({ ...f, pinned: e.target.checked }))
+                    }
                   />
                   Pin to top
                 </label>
                 <div className="flex items-center justify-end gap-2">
-                  <button type="button" onClick={resetForm} className="px-3 py-2 text-sm rounded-md border border-border">Clear</button>
-                  <button type="submit" className="px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground">Post</button>
+                  <button
+                    type="button"
+                    onClick={resetForm}
+                    className="px-3 py-2 text-sm rounded-md border border-border"
+                  >
+                    Clear
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground"
+                  >
+                    Post
+                  </button>
                 </div>
               </form>
             </details>
@@ -131,18 +157,28 @@ export default function AnnouncementsSection() {
 
         <div className="mt-6 grid gap-4">
           {sorted.map((a) => (
-            <article key={a.id} className="rounded-xl border border-border bg-card p-4">
+            <article
+              key={a.id}
+              className="rounded-xl border border-border bg-card p-4"
+            >
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">
                     {a.pinned && (
-                      <span title="Pinned" className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
+                      <span
+                        title="Pinned"
+                        className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary"
+                      >
                         <Pin className="h-3 w-3" /> Pinned
                       </span>
                     )}
-                    <h3 className="text-lg font-bold leading-snug">{a.title}</h3>
+                    <h3 className="text-lg font-bold leading-snug">
+                      {a.title}
+                    </h3>
                   </div>
-                  <p className="mt-1 text-xs text-muted-foreground">{new Date(a.date).toLocaleString()}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {new Date(a.date).toLocaleString()}
+                  </p>
                 </div>
                 {admin && (
                   <div className="flex items-center gap-2">
@@ -171,7 +207,9 @@ export default function AnnouncementsSection() {
                   onSave={(next) => onEditSave(a.id, next)}
                 />
               ) : (
-                <p className="mt-3 leading-relaxed text-foreground/90">{a.body}</p>
+                <p className="mt-3 leading-relaxed text-foreground/90">
+                  {a.body}
+                </p>
               )}
             </article>
           ))}
@@ -213,13 +251,25 @@ function EditForm({
         onChange={(e) => setBody(e.target.value)}
       />
       <label className="inline-flex items-center gap-2 text-sm">
-        <input type="checkbox" checked={pinned} onChange={(e) => setPinned(e.target.checked)} /> Pin to top
+        <input
+          type="checkbox"
+          checked={pinned}
+          onChange={(e) => setPinned(e.target.checked)}
+        />{" "}
+        Pin to top
       </label>
       <div className="flex items-center gap-2 justify-end">
-        <button type="button" onClick={onCancel} className="px-3 py-2 text-sm rounded-md border border-border">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="px-3 py-2 text-sm rounded-md border border-border"
+        >
           Cancel
         </button>
-        <button type="submit" className="px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground">
+        <button
+          type="submit"
+          className="px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground"
+        >
           Save
         </button>
       </div>

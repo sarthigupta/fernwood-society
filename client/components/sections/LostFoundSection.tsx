@@ -30,7 +30,8 @@ function useLostFound() {
         id: crypto.randomUUID(),
         type: "lost",
         title: "Black wallet near Gate 2",
-        description: "Contains PAN card and two membership cards. Reward on return.",
+        description:
+          "Contains PAN card and two membership cards. Reward on return.",
         contact: "+91 90909 90909",
         date: new Date(Date.now() - 1000 * 60 * 60 * 8).toISOString(),
       },
@@ -56,10 +57,17 @@ function useLostFound() {
 export default function LostFoundSection() {
   const { admin } = useAdmin();
   const { items, setItems } = useLostFound();
-  const [form, setForm] = useState({ type: "lost" as "lost" | "found", title: "", description: "", contact: "" });
+  const [form, setForm] = useState({
+    type: "lost" as "lost" | "found",
+    title: "",
+    description: "",
+    contact: "",
+  });
 
   const sorted = useMemo(() => {
-    return [...items].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return [...items].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
   }, [items]);
 
   const onSubmit = (e: FormEvent) => {
@@ -77,64 +85,99 @@ export default function LostFoundSection() {
     setForm({ type: "lost", title: "", description: "", contact: "" });
   };
 
-  const onDelete = (id: string) => setItems((prev) => prev.filter((i) => i.id !== id));
-  const markResolved = (id: string) => setItems((prev) => prev.map((i) => (i.id === id ? { ...i, resolved: true } : i)));
+  const onDelete = (id: string) =>
+    setItems((prev) => prev.filter((i) => i.id !== id));
+  const markResolved = (id: string) =>
+    setItems((prev) =>
+      prev.map((i) => (i.id === id ? { ...i, resolved: true } : i)),
+    );
 
   return (
     <section id="lost-found" className="scroll-mt-24">
       <div className="container">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Lost & Found</h2>
-            <p className="text-sm text-muted-foreground mt-1">Report lost or found items to help neighbors reunite with belongings.</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+              Lost & Found
+            </h2>
+            <p className="text-sm text-muted-foreground mt-1">
+              Report lost or found items to help neighbors reunite with
+              belongings.
+            </p>
           </div>
         </div>
 
-        <form onSubmit={onSubmit} className="mt-4 grid gap-3 rounded-xl border border-border bg-card p-4">
+        <form
+          onSubmit={onSubmit}
+          className="mt-4 grid gap-3 rounded-xl border border-border bg-card p-4"
+        >
           <div className="grid gap-3 sm:grid-cols-2">
-            <label className="text-sm">Type
+            <label className="text-sm">
+              Type
               <select
                 className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                 value={form.type}
-                onChange={(e) => setForm((f) => ({ ...f, type: e.target.value as "lost" | "found" }))}
+                onChange={(e) =>
+                  setForm((f) => ({
+                    ...f,
+                    type: e.target.value as "lost" | "found",
+                  }))
+                }
               >
                 <option value="lost">Lost</option>
                 <option value="found">Found</option>
               </select>
             </label>
-            <label className="text-sm">Title
+            <label className="text-sm">
+              Title
               <input
                 className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                 placeholder="e.g., Blue backpack near Block B"
                 value={form.title}
-                onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, title: e.target.value }))
+                }
               />
             </label>
           </div>
-          <label className="text-sm">Description
+          <label className="text-sm">
+            Description
             <textarea
               className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm min-h-24"
               placeholder="Add distinguishing details"
               value={form.description}
-              onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, description: e.target.value }))
+              }
             />
           </label>
-          <label className="text-sm">Contact
+          <label className="text-sm">
+            Contact
             <input
               className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               placeholder="Phone or instructions (e.g., drop at security)"
               value={form.contact}
-              onChange={(e) => setForm((f) => ({ ...f, contact: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, contact: e.target.value }))
+              }
             />
           </label>
           <div className="flex items-center justify-end">
-            <button type="submit" className="px-4 py-2 text-sm rounded-md bg-primary text-primary-foreground">Submit</button>
+            <button
+              type="submit"
+              className="px-4 py-2 text-sm rounded-md bg-primary text-primary-foreground"
+            >
+              Submit
+            </button>
           </div>
         </form>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {sorted.map((i) => (
-            <div key={i.id} className="rounded-xl border border-border bg-card p-4">
+            <div
+              key={i.id}
+              className="rounded-xl border border-border bg-card p-4"
+            >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2">
                   {i.type === "lost" ? (
@@ -168,8 +211,14 @@ export default function LostFoundSection() {
               <div className="mt-2 text-xs text-muted-foreground">
                 <span className="font-medium">Contact:</span> {i.contact}
               </div>
-              <div className="mt-1 text-[11px] text-muted-foreground">{new Date(i.date).toLocaleString()}</div>
-              {i.resolved && <div className="mt-2 inline-flex rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[10px] font-semibold">Resolved</div>}
+              <div className="mt-1 text-[11px] text-muted-foreground">
+                {new Date(i.date).toLocaleString()}
+              </div>
+              {i.resolved && (
+                <div className="mt-2 inline-flex rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[10px] font-semibold">
+                  Resolved
+                </div>
+              )}
             </div>
           ))}
         </div>

@@ -5,7 +5,8 @@ export default function Footer() {
         <div>
           <div className="font-extrabold text-lg">Fernwood Society</div>
           <p className="mt-2 text-sm text-muted-foreground">
-            A vibrant, eco-friendly residential community with modern amenities and neighborly spirit.
+            A vibrant, eco-friendly residential community with modern amenities
+            and neighborly spirit.
           </p>
         </div>
         <div>
@@ -19,9 +20,21 @@ export default function Footer() {
         <div>
           <div className="font-semibold mb-2">Quick links</div>
           <ul className="text-sm text-muted-foreground space-y-1">
-            <li><a className="hover:text-foreground" href="#announcements">Announcements</a></li>
-            <li><a className="hover:text-foreground" href="#amenities">Amenities</a></li>
-            <li><a className="hover:text-foreground" href="#lost-found">Lost &amp; Found</a></li>
+            <li>
+              <a className="hover:text-foreground" href="#announcements">
+                Announcements
+              </a>
+            </li>
+            <li>
+              <a className="hover:text-foreground" href="#amenities">
+                Amenities
+              </a>
+            </li>
+            <li>
+              <a className="hover:text-foreground" href="#lost-found">
+                Lost &amp; Found
+              </a>
+            </li>
           </ul>
         </div>
       </div>
